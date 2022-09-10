@@ -1,6 +1,7 @@
 package com.groceryREST.groceryREST.Entity;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 public class GroceryItem {
 
@@ -10,7 +11,7 @@ public class GroceryItem {
     private String category;
     private boolean requriesRefrigeration;
     private BigDecimal price;
-
+    private Set<Cart> carts;
     public int getId() {
         return id;
     }
