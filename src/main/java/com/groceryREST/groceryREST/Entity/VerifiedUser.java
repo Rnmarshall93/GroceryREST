@@ -1,15 +1,28 @@
 package com.groceryREST.groceryREST.Entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Table(name = "VerifiedUser")
 public class VerifiedUser {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "username")
     private String username;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "accountLevel")
     private String accountLevel;
+    @Column(name = "dateCreated")
     private Timestamp dateCreated;
-    private boolean accountActivated;
+    @Column(name = "activated")
+    private boolean isActivated;
 
     public int getId() {
         return id;
