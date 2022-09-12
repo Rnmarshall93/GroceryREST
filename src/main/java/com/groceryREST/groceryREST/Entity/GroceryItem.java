@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
 
+@Entity
 @Table(name = "GroceryItem")
 public class GroceryItem {
 
@@ -21,7 +22,7 @@ public class GroceryItem {
     @Column(name = "category")
     private String category;
 
-    @Column(name = "requiresRefrigeration")
+    @Column(name = "requires_refrigeration")
     private boolean requriesRefrigeration;
 
     @Column(name = "price")
