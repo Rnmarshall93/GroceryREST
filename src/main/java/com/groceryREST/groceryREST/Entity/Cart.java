@@ -2,7 +2,7 @@ package com.groceryREST.groceryREST.Entity;
 import javax.persistence.*;
 import java.util.Set;
 
-
+@Entity
 @Table(name = "cart")
 public class Cart {
 
@@ -14,8 +14,15 @@ public class Cart {
     @Column(name = "userId")
     private int userId;
 
-    //todo setup many to many relationship
-    @Transient
+
+
+    @ManyToMany(fetch = FetchType.EAGER,
+    cascade = CascadeType.ALL)
+    @JoinTable(
+            name="cart_groceryitem",
+            joinColumns = { @JoinColumn(name = "groceryItemId")},
+            inverseJoinColumns = {@JoinColumn(name = "cartId")}
+    )
     private Set<GroceryItem> itemsInCart;
 
     public int getId() {
