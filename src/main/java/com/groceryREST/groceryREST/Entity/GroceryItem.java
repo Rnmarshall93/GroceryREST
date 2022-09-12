@@ -28,8 +28,12 @@ public class GroceryItem {
     @Column(name = "price")
     private BigDecimal price;
 
-    //todo create manyToManyRelationship with Cart
-    @Transient
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name="cart_groceryitem",
+            joinColumns = { @JoinColumn(name = "cartId")},
+            inverseJoinColumns = {@JoinColumn(name = "groceryItemId")}
+    )
     private Set<Cart> carts;
 
     public int getId() {
