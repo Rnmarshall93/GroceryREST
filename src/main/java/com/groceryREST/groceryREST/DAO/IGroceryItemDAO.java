@@ -9,6 +9,6 @@ public interface IGroceryItemDAO {
     public GroceryItem getGroceryItem(int id);
     public GroceryItem editGroceryItem(GroceryItem groceryItem);
     public Set<GroceryItem> getGroceryItemsByCategory(String category);
-
+    public void addGroceryItem(GroceryItem groceryItem);
 
 }
