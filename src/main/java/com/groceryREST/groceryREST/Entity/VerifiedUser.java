@@ -72,22 +72,12 @@ public class VerifiedUser {
         this.dateCreated = dateCreated;
     }
 
-    public boolean isAccountActivated() {
-        return accountActivated;
+    public boolean isActivated() {
+        return isActivated;
     }
 
-    public void setAccountActivated(boolean accountActivated) {
-        this.accountActivated = accountActivated;
-    }
-
-    public VerifiedUser(int id, String username, String email, String password, String accountLevel, Timestamp dateCreated, boolean accountActivated) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.accountLevel = accountLevel;
-        this.dateCreated = dateCreated;
-        this.accountActivated = accountActivated;
+    public void setActivated(boolean activated) {
+        isActivated = activated;
     }
 
     public VerifiedUser() {
@@ -101,7 +91,7 @@ public class VerifiedUser {
                 ", email='" + email + '\'' +
                 ", accountLevel='" + accountLevel + '\'' +
                 ", dateCreated=" + dateCreated +
-                ", accountActivated=" + accountActivated +
+                ", isActivated=" + isActivated +
                 '}';
     }
 }
