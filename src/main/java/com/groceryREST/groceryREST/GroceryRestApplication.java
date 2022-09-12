@@ -27,8 +27,6 @@ public class GroceryRestApplication {
 	@Bean
 	Configuration configuration() throws IOException {
 
-		String currentPath = new java.io.File(".").getCanonicalPath();
-		System.out.println("Current dir:" + currentPath);
 		Configuration configuration = new Configuration();
 		configuration.configure("hibernate.cfg.xml");
 		configuration.addAnnotatedClass(GroceryItem.class);
