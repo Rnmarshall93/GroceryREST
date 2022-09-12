@@ -1,17 +1,36 @@
 package com.groceryREST.groceryREST.Entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
 
+@Table(name = "GroceryItem")
 public class GroceryItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "category")
     private String category;
+
+    @Column(name = "requiresRefrigeration")
     private boolean requriesRefrigeration;
+
+    @Column(name = "price")
     private BigDecimal price;
+
+    //todo create manyToManyRelationship with Cart
+    @Transient
     private Set<Cart> carts;
+
     public int getId() {
         return id;
     }
