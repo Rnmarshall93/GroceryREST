@@ -9,6 +9,7 @@ ivy-cache
 argfile*
 activemq-data/
 classes/
+secretFile
 
 # Log files
 jxl.log
@@ -51,6 +52,3 @@ atlassian-ide-plugin.xml
 
 # VS Code
 .vscode/
-
-#Anything to do with secrets
-*.properties
