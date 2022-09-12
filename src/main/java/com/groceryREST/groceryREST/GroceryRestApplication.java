@@ -1,5 +1,6 @@
 package com.groceryREST.groceryREST;
 
+import com.groceryREST.groceryREST.Entity.Cart;
 import com.groceryREST.groceryREST.Entity.GroceryItem;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -30,7 +31,7 @@ public class GroceryRestApplication {
 		Configuration configuration = new Configuration();
 		configuration.configure("hibernate.cfg.xml");
 		configuration.addAnnotatedClass(GroceryItem.class);
-
+		configuration.addAnnotatedClass(Cart.class);
 
 
 		InputStream secretFile = new FileInputStream("secretFile");
