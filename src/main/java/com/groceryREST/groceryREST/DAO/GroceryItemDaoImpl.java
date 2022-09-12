@@ -42,4 +42,17 @@ public class GroceryItemDaoImpl implements IGroceryItemDAO{
     public Set<GroceryItem> getGroceryItemsByCategory(String category) {
         return null;
     }
+
+    @Override
+    public void addGroceryItem(GroceryItem groceryItem) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        session.save(groceryItem);
+
+        session.getTransaction().commit();
+        session.close();
+    }
 }
