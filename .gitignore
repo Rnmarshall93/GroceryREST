@@ -10,6 +10,8 @@ argfile*
 activemq-data/
 classes/
 secretFile
+*.mvn
+
 
 # Log files
 jxl.log
