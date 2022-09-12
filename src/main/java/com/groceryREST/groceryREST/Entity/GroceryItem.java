@@ -28,7 +28,8 @@ public class GroceryItem {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL)
     @JoinTable(
             name="cart_groceryitem",
             joinColumns = { @JoinColumn(name = "cartId")},
@@ -76,6 +77,14 @@ public class GroceryItem {
         this.requriesRefrigeration = requriesRefrigeration;
     }
 
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
@@ -86,6 +95,14 @@ public class GroceryItem {
 
     public GroceryItem(int id, String name, String description, String category, boolean requriesRefrigeration, BigDecimal price) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.requriesRefrigeration = requriesRefrigeration;
+        this.price = price;
+    }
+
+    public GroceryItem(String name, String description, String category, boolean requriesRefrigeration, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.category = category;
