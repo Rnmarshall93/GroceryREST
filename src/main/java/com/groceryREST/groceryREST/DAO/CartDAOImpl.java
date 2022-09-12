@@ -45,4 +45,17 @@ public class CartDAOImpl implements ICartDAO{
         session.getTransaction().commit();
         session.close();
     }
+
+    @Override
+    public void addCart(Cart cart) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+
+        session.save(cart);
+
+        session.getTransaction().commit();
+        session.close();
+    }
 }
