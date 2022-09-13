@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Query;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -69,8 +71,20 @@ public class GroceryItemDaoImpl implements IGroceryItemDAO{
     }
 
     @Override
-    public Set<GroceryItem> getGroceryItemsByCategory(String category) {
-        return null;
+    public List<GroceryItem> getGroceryItemsByCategory(String category) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        Query q = session.createQuery("FROM GroceryItem g WHERE g.category = :desiredCategory");
+        q.setParameter("desiredCategory", category);
+        List<GroceryItem> matchingGroceryItems = q.getResultList();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return matchingGroceryItems;
     }
 
     @Override
