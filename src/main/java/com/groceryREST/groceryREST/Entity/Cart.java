@@ -1,5 +1,7 @@
 package com.groceryREST.groceryREST.Entity;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,13 +19,13 @@ public class Cart {
 
 
     @ManyToMany(fetch = FetchType.EAGER,
-    cascade = CascadeType.ALL)
+    cascade = {CascadeType.ALL})
     @JoinTable(
             name="cart_groceryitem",
-            joinColumns = { @JoinColumn(name = "groceryItemId")},
-            inverseJoinColumns = {@JoinColumn(name = "cartId")}
+            joinColumns = {@JoinColumn(name = "cartId")},
+            inverseJoinColumns = {@JoinColumn(name = "groceryItemId")}
     )
-    private Set<GroceryItem> itemsInCart;
+    private List<GroceryItem> itemsInCart;
 
     public int getId() {
         return id;
@@ -41,15 +43,21 @@ public class Cart {
         this.userId = userId;
     }
 
-    public Set<GroceryItem> getItemsInCart() {
+    public List<GroceryItem> getItemsInCart() {
         return itemsInCart;
     }
 
-    public void setItemsInCart(Set<GroceryItem> itemsInCart) {
+    public void setItemsInCart(ArrayList<GroceryItem> itemsInCart) {
         this.itemsInCart = itemsInCart;
     }
 
-    public Cart(int id, int userId, Set<GroceryItem> itemsInCart) {
+    public void addGroceryItem(GroceryItem groceryItem) {
+        if(itemsInCart == null)
+            itemsInCart = new ArrayList<GroceryItem>();
+        itemsInCart.add(groceryItem);
+    }
+
+    public Cart(int id, int userId, ArrayList<GroceryItem> itemsInCart) {
         this.id = id;
         this.userId = userId;
         this.itemsInCart = itemsInCart;

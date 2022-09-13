@@ -2,6 +2,8 @@ package com.groceryREST.groceryREST.Entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,13 +31,9 @@ public class GroceryItem {
     private BigDecimal price;
 
     @ManyToMany(fetch = FetchType.LAZY,
-    cascade = CascadeType.ALL)
-    @JoinTable(
-            name="cart_groceryitem",
-            joinColumns = { @JoinColumn(name = "cartId")},
-            inverseJoinColumns = {@JoinColumn(name = "groceryItemId")}
-    )
-    private Set<Cart> carts;
+    cascade = {CascadeType.ALL},
+    mappedBy = "itemsInCart")
+    private List<Cart> carts;
 
     public int getId() {
         return id;
@@ -77,12 +75,16 @@ public class GroceryItem {
         this.requriesRefrigeration = requriesRefrigeration;
     }
 
-    public Set<Cart> getCarts() {
+    public List<Cart> getCarts() {
         return carts;
     }
 
-    public void setCarts(Set<Cart> carts) {
+    public void setCarts(ArrayList<Cart> carts) {
         this.carts = carts;
+    }
+
+    public void addItemToCart(GroceryItem groceryItem)
+    {
     }
 
     public BigDecimal getPrice() {
