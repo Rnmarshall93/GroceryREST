@@ -3,7 +3,8 @@ package com.groceryREST.groceryREST.Entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Table(name = "VerifiedUser")
+@Entity
+@Table(name = "Verified_User")
 public class VerifiedUser {
 
     @Id

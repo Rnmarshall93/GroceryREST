@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-public class GroceryItemDaoImpl implements IGroceryItemDAO{
+public class GroceryItemDAOImpl implements IGroceryItemDAO{
 
     @Autowired Configuration configuration;
 
