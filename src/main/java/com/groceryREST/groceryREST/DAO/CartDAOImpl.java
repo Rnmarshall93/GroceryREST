@@ -12,10 +12,6 @@ import org.springframework.stereotype.Component;
 public class CartDAOImpl implements ICartDAO{
 
     @Autowired
-    ApplicationContext context;
-
-
-    @Autowired
     Configuration configuration;
 
     @Override
@@ -26,7 +22,7 @@ public class CartDAOImpl implements ICartDAO{
         session.beginTransaction();
 
         Cart cart = session.get(Cart.class, cartId);
-
+        cart.getItemsInCart().size();
         session.getTransaction().commit();
         session.close();
 
@@ -58,4 +54,33 @@ public class CartDAOImpl implements ICartDAO{
         session.getTransaction().commit();
         session.close();
     }
+
+    @Override
+    public void deleteCart(int cartId) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+
+        Cart cartToDelete = session.get(Cart.class, cartId);
+        session.delete(cartToDelete);
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteCart(Cart cart) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+
+        session.delete(cart);
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
+
 }
