@@ -7,7 +7,8 @@ import java.util.Set;
 public interface IGroceryItemDAO {
 
     public GroceryItem getGroceryItem(int id);
-    public GroceryItem editGroceryItem(GroceryItem groceryItem);
+    public void editGroceryItem(GroceryItem oldGroceryItem, GroceryItem newGroceryItem);
+    public void editGroceryItem(int oldGroceryItemId, GroceryItem newGroceryItem);
     public Set<GroceryItem> getGroceryItemsByCategory(String category);
     public void addGroceryItem(GroceryItem groceryItem);
 

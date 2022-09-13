@@ -13,10 +13,8 @@ import java.util.Set;
 @Component
 public class GroceryItemDaoImpl implements IGroceryItemDAO{
 
-    @Autowired
-    ApplicationContext context;
-
     @Autowired Configuration configuration;
+
     @Override
     public GroceryItem getGroceryItem(int id) {
 
@@ -26,7 +24,7 @@ public class GroceryItemDaoImpl implements IGroceryItemDAO{
         session.beginTransaction();
 
         GroceryItem foundItem = session.get(GroceryItem.class, id);
-
+        foundItem.getCarts().size();
         session.getTransaction().commit();
         session.close();
 
@@ -34,8 +32,40 @@ public class GroceryItemDaoImpl implements IGroceryItemDAO{
     }
 
     @Override
-    public GroceryItem editGroceryItem(GroceryItem groceryItem) {
-        return null;
+    public void editGroceryItem(GroceryItem oldGroceryItem, GroceryItem newGroceryItem) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        oldGroceryItem.setName(newGroceryItem.getName());
+        oldGroceryItem.setCategory(newGroceryItem.getCategory());
+        oldGroceryItem.setDescription(newGroceryItem.getDescription());
+        oldGroceryItem.setRequriesRefrigeration(newGroceryItem.isRequriesRefrigeration());
+        oldGroceryItem.setPrice(newGroceryItem.getPrice());
+        session.update(oldGroceryItem);
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public void editGroceryItem(int oldGroceryItemId, GroceryItem newGroceryItem) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        GroceryItem oldGroceryItem = session.get(GroceryItem.class, oldGroceryItemId);
+        oldGroceryItem.setName(newGroceryItem.getName());
+        oldGroceryItem.setCategory(newGroceryItem.getCategory());
+        oldGroceryItem.setDescription(newGroceryItem.getDescription());
+        oldGroceryItem.setRequriesRefrigeration(newGroceryItem.isRequriesRefrigeration());
+        oldGroceryItem.setPrice(newGroceryItem.getPrice());
+        session.update(oldGroceryItem);
+
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
