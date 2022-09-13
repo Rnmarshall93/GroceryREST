@@ -19,11 +19,10 @@ public class Cart {
     private int userId;
 
     @PreRemove
-    public void logRemoval()
+    public void trimChildren()
     {
         Cart c = this;
         c.setItemsInCart(null);
-        System.out.println("\tRemoved\tCart");
     }
 
 
