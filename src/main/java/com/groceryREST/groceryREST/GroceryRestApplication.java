@@ -1,21 +1,19 @@
 package com.groceryREST.groceryREST;
 
+import com.groceryREST.groceryREST.DAO.VerifiedUserDAOImpl;
 import com.groceryREST.groceryREST.Entity.Cart;
 import com.groceryREST.groceryREST.Entity.GroceryItem;
+import com.groceryREST.groceryREST.Entity.VerifiedUser;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.util.Properties;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
@@ -32,7 +30,7 @@ public class GroceryRestApplication {
 		configuration.configure("hibernate.cfg.xml");
 		configuration.addAnnotatedClass(GroceryItem.class);
 		configuration.addAnnotatedClass(Cart.class);
-
+		configuration.addAnnotatedClass(VerifiedUser.class);
 
 		InputStream secretFile = new FileInputStream("secretFile");
 		Properties secretProps = new Properties();
