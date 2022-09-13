@@ -2,6 +2,7 @@ package com.groceryREST.groceryREST.DAO;
 
 import com.groceryREST.groceryREST.Entity.GroceryItem;
 
+import java.util.List;
 import java.util.Set;
 
 public interface IGroceryItemDAO {
@@ -9,7 +10,7 @@ public interface IGroceryItemDAO {
     public GroceryItem getGroceryItem(int id);
     public void editGroceryItem(GroceryItem oldGroceryItem, GroceryItem newGroceryItem);
     public void editGroceryItem(int oldGroceryItemId, GroceryItem newGroceryItem);
-    public Set<GroceryItem> getGroceryItemsByCategory(String category);
+    public List<GroceryItem> getGroceryItemsByCategory(String category);
     public void addGroceryItem(GroceryItem groceryItem);
 
 }
