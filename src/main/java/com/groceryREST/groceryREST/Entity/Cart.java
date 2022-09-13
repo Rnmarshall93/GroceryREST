@@ -1,8 +1,10 @@
 package com.groceryREST.groceryREST.Entity;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "cart")
@@ -16,15 +18,23 @@ public class Cart {
     @Column(name = "userId")
     private int userId;
 
+    @PreRemove
+    public void logRemoval()
+    {
+        Cart c = this;
+        c.setItemsInCart(null);
+        System.out.println("\tRemoved\tCart");
+    }
 
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
     cascade = {CascadeType.ALL})
     @JoinTable(
             name="cart_groceryitem",
             joinColumns = {@JoinColumn(name = "cartId")},
             inverseJoinColumns = {@JoinColumn(name = "groceryItemId")}
     )
+    @JsonManagedReference
     private List<GroceryItem> itemsInCart;
 
     public int getId() {

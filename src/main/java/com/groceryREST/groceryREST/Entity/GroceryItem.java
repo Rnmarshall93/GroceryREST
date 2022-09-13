@@ -1,10 +1,11 @@
 package com.groceryREST.groceryREST.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "GroceryItem")
@@ -31,8 +32,9 @@ public class GroceryItem {
     private BigDecimal price;
 
     @ManyToMany(fetch = FetchType.LAZY,
-    cascade = {CascadeType.ALL},
+    cascade = {CascadeType.MERGE},
     mappedBy = "itemsInCart")
+    @JsonBackReference
     private List<Cart> carts;
 
     public int getId() {
@@ -81,10 +83,6 @@ public class GroceryItem {
 
     public void setCarts(ArrayList<Cart> carts) {
         this.carts = carts;
-    }
-
-    public void addItemToCart(GroceryItem groceryItem)
-    {
     }
 
     public BigDecimal getPrice() {
