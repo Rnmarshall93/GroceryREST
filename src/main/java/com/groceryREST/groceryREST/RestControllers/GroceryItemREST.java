@@ -36,4 +36,13 @@ public class GroceryItemREST {
 
         return mapper.writeValueAsString(foundItem);
     }
+
+    @GetMapping("/getAllItems")
+    public String getAllGroceryItems() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        IGroceryItemDAO groceryItemDAO = context.getBean(IGroceryItemDAO.class);
+
+        return mapper.writeValueAsString(groceryItemDAO.getAllGroceryItems());
+    }
 }
