@@ -35,7 +35,18 @@ public class GroceryItemDAOImpl implements IGroceryItemDAO{
 
     @Override
     public List<GroceryItem> getAllGroceryItems() {
-        return null;
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        Query q = session.createQuery("FROM GroceryItem");
+        List<GroceryItem> foundGroceryItems = q.getResultList();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return foundGroceryItems;
     }
 
     @Override
