@@ -34,6 +34,11 @@ public class GroceryItemDAOImpl implements IGroceryItemDAO{
     }
 
     @Override
+    public List<GroceryItem> getAllGroceryItems() {
+        return null;
+    }
+
+    @Override
     public void editGroceryItem(GroceryItem oldGroceryItem, GroceryItem newGroceryItem) {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.getCurrentSession();
