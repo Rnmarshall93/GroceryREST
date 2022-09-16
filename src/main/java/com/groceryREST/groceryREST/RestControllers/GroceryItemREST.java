@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/GroceryItem")
+@RequestMapping("/groceryItem")
 public class GroceryItemREST {
 
     @Autowired
@@ -50,6 +50,7 @@ public class GroceryItemREST {
 
     @GetMapping("/getAllItems")
     public String getAllGroceryItems() throws JsonProcessingException {
+
         ObjectMapper mapper = new ObjectMapper();
 
         IGroceryItemDAO groceryItemDAO = context.getBean(IGroceryItemDAO.class);
