@@ -38,4 +38,18 @@ public class VerifiedUserDAOImpl implements IVerifiedUserDAO{
     @Override
     public void updateUser(VerifiedUser user) {
     }
+
+    @Override
+    public void createUser(String username, String Password) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        VerifiedUser verifiedUser = new VerifiedUser();
+        session.save(verifiedUser);
+
+        session.getTransaction().commit();
+        session.close();
+    }
 }
