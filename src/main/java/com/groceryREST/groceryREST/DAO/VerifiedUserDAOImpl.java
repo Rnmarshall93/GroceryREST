@@ -52,4 +52,21 @@ public class VerifiedUserDAOImpl implements IVerifiedUserDAO{
         session.getTransaction().commit();
         session.close();
     }
+
+    @Override
+    public void validateEmail(String username) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+
+        Query q = session.createQuery("FROM VerifiedUser v WHERE v.username = :username");
+        q.setParameter("username", username);
+        VerifiedUser user = (VerifiedUser) q.getSingleResult();
+        user.setActivated(true);
+
+        session.getTransaction().commit();
+        session.close();
+    }
 }

@@ -6,4 +6,5 @@ public interface IVerifiedUserDAO {
     public VerifiedUser getUser(String username, String password);
     public void updateUser(VerifiedUser user);
     public void createUser(String username, String Password);
+    public void validateEmail(String username);
 }
