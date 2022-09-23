@@ -36,6 +36,25 @@ public class VerifiedUserDAOImpl implements IVerifiedUserDAO{
     }
 
     @Override
+    public VerifiedUser getUserByEmail(String email, String password) {
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        Query q = session.createQuery("FROM VerifiedUser v WHERE v.email = :email AND v.password = :password");
+        q.setParameter("email", email);
+        q.setParameter("password", password);
+
+        VerifiedUser foundUser = (VerifiedUser) q.getSingleResult();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return foundUser;
+    }
+
+    @Override
     public void updateUser(VerifiedUser user) {
     }
 
