@@ -29,12 +29,12 @@ public class UserREST {
      * @return
      * @throws JsonProcessingException
      */
-    @GetMapping("/getUser")
+    @GetMapping("/getUserByUsername")
     public String getUser(@RequestParam String username, @RequestParam String password) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
 
         IVerifiedUserDAO verifiedUserDAO = context.getBean(IVerifiedUserDAO.class);
-        VerifiedUser foundUser = verifiedUserDAO.getUser(username, password);
+        VerifiedUser foundUser = verifiedUserDAO.getUserByUsername(username, password);
 
         return mapper.writeValueAsString(foundUser);
     }

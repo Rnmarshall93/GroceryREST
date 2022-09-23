@@ -17,7 +17,7 @@ public class VerifiedUserDAOImpl implements IVerifiedUserDAO{
     Configuration configuration;
 
     @Override
-    public VerifiedUser getUser(String username, String password) {
+    public VerifiedUser getUserByUsername(String username, String password) {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.getCurrentSession();
 
