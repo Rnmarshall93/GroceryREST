@@ -28,6 +28,8 @@ public class GroceryItem {
     @Column(name = "requires_refrigeration")
     private boolean requriesRefrigeration;
 
+    private String imageUrl;
+
     @Column(name = "price")
     private BigDecimal price;
 
@@ -51,6 +53,14 @@ public class GroceryItem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {
